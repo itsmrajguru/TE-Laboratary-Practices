@@ -1,0 +1,190 @@
+Great.
+Your 4th practical is:
+Design and Develop Custom Application (Mini Project) using Salesforce Cloud
+This is basically an expanded version of Practical 3.
+Since you already created a Student object, now we’ll convert it into a small mini-project.
+
+BEST MINI PROJECT FOR YOU
+Student Management System
+Because:
+
+
+easiest,
+
+
+quick,
+
+
+less coding,
+
+
+easy screenshots,
+
+
+easy viva.
+
+
+
+What You Need To Make
+A cloud application that can:
+
+
+store student data,
+
+
+display records,
+
+
+edit records,
+
+
+manage student information.
+
+
+That’s enough.
+
+FINAL PROJECT STRUCTURE
+Your mini project will have:
+ComponentPurposeStudent ObjectDatabase tableFieldsStore informationTabOpen applicationRecordsStudent dataApex ClassInsert dataReportsView dataPage LayoutUI
+
+STEP 1 — Reuse Existing Student Object
+You already created:
+Student
+So no need to create again.
+
+STEP 2 — Add More Fields
+Go:
+Setup → Object Manager → Student → Fields & Relationships
+Add these extra fields:
+FieldTypeEmailEmailMobilePhoneAddressText AreaAttendanceNumber
+
+STEP 3 — Create Some Student Records
+Click:
+App Launcher → Student
+Click:
+New
+Add 3–5 students manually.
+Example:
+NameRollDepartmentMangesh101ComputerRahul102ITSneha103E&TC
+Save them.
+
+STEP 4 — Create Report
+Go:
+App Launcher → Reports
+Click:
+New Report
+Choose:
+Student
+Click:
+Start Report
+Save report as:
+Student Report
+DONE.
+
+STEP 5 — Create Dashboard (Optional but Good)
+Go:
+App Launcher → Dashboard
+Create:
+Student Dashboard
+Add:
+
+
+total students,
+
+
+marks,
+
+
+attendance.
+
+
+Even simple dashboard is enough.
+
+STEP 6 — Improve Apex Code
+Open:
+Developer Console
+Replace old code with this better version:
+public class StudentManager {    public static void createStudent() {        Student__c s = new Student__c();        s.Name = 'Mangesh';        s.Roll_Number__c = 101;        s.Department__c = 'Computer';        s.Marks__c = 85;        s.Attendance__c = 90;        insert s;        System.debug('Student Added Successfully');    }}
+Save.
+Run:
+StudentManager.createStudent();
+
+STEP 7 — Screenshots You NEED
+Take screenshots of:
+
+
+Salesforce Home
+
+
+Student Object
+
+
+Fields
+
+
+Student Records
+
+
+Apex Code
+
+
+Report
+
+
+Dashboard (optional)
+
+
+These are enough for practical file.
+
+WHAT TO WRITE IN JOURNAL
+Aim
+To design and develop a custom Student Management Application using Salesforce Cloud.
+
+Objectives
+
+
+Create custom object
+
+
+Add fields
+
+
+Store student data
+
+
+Generate reports
+
+
+Use Apex programming
+
+
+
+Tools Used
+
+
+Salesforce Cloud
+
+
+Apex Language
+
+
+Developer Console
+
+
+
+Result
+Thus, custom Student Management Application was designed and developed successfully using Salesforce Cloud.
+
+Viva Questions
+1. What is Salesforce Cloud?
+Cloud platform for developing applications.
+2. What is Apex?
+Salesforce programming language.
+3. What is a custom object?
+User-defined database table.
+4. What is dashboard?
+Graphical representation of reports/data.
+5. What is report?
+Organized display of stored records.
+
+Honestly, this is already enough level for most college practical submissions.

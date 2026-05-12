@@ -1,0 +1,735 @@
+No problem — I’ll explain this like you have never used Salesforce before.
+
+Right now you are probably stuck because Salesforce has:
+
+too many menus,
+different UI versions,
+confusing options.
+
+So follow this EXACTLY step-by-step.
+
+STEP 1 — Create Salesforce Account
+
+Open:
+
+Salesforce Developer Signup
+
+Fill:
+
+Name
+Email
+Company → write anything
+Country → India
+
+After signup:
+
+verify email
+set password
+
+Then login.
+
+STEP 2 — Open Salesforce Home
+
+After login you will see:
+
+many boxes,
+dashboard,
+menus,
+maybe “Lightning Experience”.
+
+Ignore everything.
+
+STEP 3 — Open Setup
+
+Look at TOP RIGHT corner.
+
+You will see:
+⚙️ Gear Icon
+
+Click it.
+
+Then click:
+
+Setup
+
+Wait a few seconds.
+
+Now a new page opens.
+
+STEP 4 — Open Object Manager
+
+At the top you will see tabs like:
+
+Home
+Object Manager
+
+Click:
+
+Object Manager
+STEP 5 — Create Custom Object
+
+Now look at TOP RIGHT.
+
+Click:
+
+Create
+
+Then click:
+
+Custom Object
+STEP 6 — Fill Object Details
+
+Now you will see a form.
+
+Fill EXACTLY:
+
+Field	Value
+Label	Student
+Plural Label	Students
+
+After typing Label = Student,
+Salesforce automatically fills:
+
+Object Name
+Record Name
+
+Leave them as default.
+
+STEP 7 — Save Object
+
+Scroll down.
+
+Click:
+
+Save
+
+DONE.
+
+You just created a database table called Student.
+
+STEP 8 — Create Fields
+
+Now you are inside Student Object page.
+
+Look in left sidebar or middle tabs.
+
+Click:
+
+Fields & Relationships
+STEP 9 — Create Student Name Field
+
+Click:
+
+New
+
+Now choose:
+
+Text
+
+Click Next.
+
+Fill:
+| Field Label | Student Name |
+
+Click:
+
+Next
+Next
+Save
+
+DONE.
+
+STEP 10 — Create Roll Number Field
+
+Again click:
+
+New
+
+Choose:
+
+Number
+
+Click Next.
+
+Fill:
+| Field Label | Roll Number |
+
+Length:
+
+3
+
+Decimal Places:
+
+0
+
+Click:
+
+Next
+Next
+Save
+STEP 11 — Create Department Field
+
+Again:
+
+New
+Text
+
+Field Label:
+
+Department
+
+Save.
+
+STEP 12 — Create Marks Field
+
+Again:
+
+New
+Number
+
+Field Label:
+
+Marks
+
+Length:
+
+3
+
+Decimal Places:
+
+0
+
+Save.
+
+DONE.
+
+Now your database/table is ready.
+
+STEP 13 — Open Developer Console
+
+Now go TOP RIGHT again.
+
+Click:
+⚙️ Gear Icon
+
+Click:
+
+Developer Console
+
+A new small window opens.
+
+WAIT a few seconds.
+
+STEP 14 — Create Apex Class
+
+In Developer Console:
+
+Click:
+
+File → New → Apex Class
+
+Now popup appears.
+
+Enter:
+
+StudentManager
+
+Click OK.
+
+STEP 15 — Remove Old Code
+
+You will see some default code.
+
+Delete everything.
+
+Paste this EXACT code:
+
+public class StudentManager {
+
+    public static void createStudent() {
+
+        Student__c s = new Student__c();
+
+        s.Student_Name__c = 'Mangesh';
+        s.Roll_Number__c = 101;
+        s.Department__c = 'Computer';
+        s.Marks__c = 85;
+
+        insert s;
+
+        System.debug('Student Record Inserted');
+    }
+}
+STEP 16 — Save Code
+
+Press:
+
+Ctrl + S
+
+OR click:
+
+File → Save
+STEP 17 — Run the Program
+
+Now click:
+
+Debug → Open Execute Anonymous Window
+
+Small popup opens.
+
+Paste this:
+
+StudentManager.createStudent();
+
+Click:
+
+Execute
+
+DONE.
+
+Your program inserted data into Salesforce database.
+
+STEP 18 — See Output
+
+Now close Developer Console.
+
+Click:
+
+App Launcher
+
+(9 dots icon at top left)
+
+Search:
+
+Students
+
+Open it.
+
+You will see:
+
+Mangesh
+Roll Number 101
+Department Computer
+Marks 85
+
+CONGRATULATIONS 🎉
+
+You just created:
+
+cloud database,
+application,
+and inserted data using Apex programming.
+Why Names Have "__c"
+
+Example:
+
+Student__c
+
+Because:
+
+custom objects/fields in Salesforce always end with:
+__c
+What Your Code Means
+Code	Meaning
+Student__c	Student table
+new Student__c()	Create new row
+insert s	Save into database
+MOST COMMON PROBLEM
+
+If code gives error:
+
+Variable does not exist
+
+then field names may differ.
+
+Open:
+
+Object Manager → Student → Fields
+
+and check exact API names.
+
+Usually Salesforce automatically makes:
+
+Student_Name__c
+Roll_Number__c
+
+etc.
+
+What Screenshots Should You Take?
+
+Take screenshots of:
+
+Salesforce Home
+Object Creation
+Fields
+Apex Code
+Execute Window
+Final Student Record
+
+These are enough for journal submission.
+
+
+
+
+
+
+-------------------------------Line: 1, Column: 16 Method does not exist or incorrect signature: void createStudent() from the type StudentManager
+
+
+
+
+Perfect — that means the class itself is fine.
+The problem is almost certainly the field API name.
+
+Line 8 is probably this:
+
+s.Student_Name__c = 'Mangesh';
+
+Salesforce is saying:
+
+“This field name does not exist.”
+
+Because Salesforce may have created a different API name automatically.
+
+FIX IT
+
+Go here carefully:
+
+Setup → Object Manager → Student → Fields & Relationships
+
+Now click the field:
+
+Student Name
+
+You will see something like:
+
+Label	Student Name
+Field Name	Student_Name
+
+OR maybe:
+
+Student_Name1
+Student_Name_2
+
+etc.
+
+IMPORTANT
+
+You need the:
+
+API Name
+
+If API Name is:
+
+Student_Name
+
+then code becomes:
+
+s.Student_Name__c = 'Mangesh';
+
+But if API Name is:
+
+Student_Name1
+
+then code must be:
+
+s.Student_Name1__c = 'Mangesh';
+Do This For ALL FIELDS
+
+Check exact API names for:
+
+Student Name
+Roll Number
+Department
+Marks
+
+Then replace them in code.
+
+MOST LIKELY FIX
+
+Sometimes students accidentally create fields with spaces or duplicate names.
+
+So your corrected code may become something like:
+
+public class StudentManager {
+
+    public static void createStudent() {
+
+        Student__c s = new Student__c();
+
+        s.Student_Name1__c = 'Mangesh';
+        s.Roll_Number__c = 101;
+        s.Department__c = 'Computer';
+        s.Marks__c = 85;
+
+        insert s;
+    }
+}
+QUICKER METHOD
+
+Instead of guessing:
+
+Reply with:
+
+the EXACT error message from line 8
+
+OR
+
+screenshot text/API names of your fields
+
+and I’ll correct the full code for you immediately.
+
+
+
+-------------------------------but there is no showing the students in the app launcher
+
+
+
+
+
+That’s normal.
+You created the object, but Salesforce has not yet added it to an app/navigation menu. That’s why “Students” is not appearing in App Launcher.
+
+Your data may already be inserted successfully.
+
+Do this step-by-step.
+
+METHOD 1 — Check Records Directly
+
+Go to:
+
+Setup → Object Manager → Student
+
+Now click:
+
+Records
+
+OR sometimes:
+
+View Object
+
+If you see your record:
+
+Mangesh
+101
+
+then your code worked successfully.
+
+METHOD 2 — Add Student Tab Properly
+
+This is the proper fix.
+
+STEP 1 — Open Setup
+
+Click:
+⚙️ Gear Icon → Setup
+
+STEP 2 — Search “Tabs”
+
+On left search bar type:
+
+Tabs
+
+Open:
+
+Tabs
+STEP 3 — Create New Tab
+
+Scroll to:
+
+Custom Object Tabs
+
+Click:
+
+New
+STEP 4 — Select Object
+
+Choose:
+
+Student
+
+Click:
+
+Next
+STEP 5 — Choose Any Tab Style
+
+Pick any color/icon.
+
+Click:
+
+Next
+
+Then:
+
+Next
+Save
+
+DONE.
+
+STEP 6 — Open App Launcher
+
+Now click:
+
+9 dots icon (App Launcher)
+
+Search:
+
+Student
+
+NOW it should appear.
+
+Open it.
+
+You should see your inserted record.
+
+If Record Still Not Visible
+
+Then your insert code may not have run successfully.
+
+To verify:
+
+Go:
+
+Developer Console → Logs
+
+OR simply run again:
+
+StudentManager.createStudent();
+
+If no errors appear,
+record is inserted.
+
+IMPORTANT
+
+Salesforce has:
+
+Objects
+Tabs
+Apps
+
+Creating an object does NOT automatically create a visible menu item sometimes.
+
+So this issue is completely normal for beginners.
+
+
+
+
+
+
+-----------------------------the record types is blank
+
+
+
+
+
+
+That’s completely fine — don’t worry.
+For your practical, a blank “Record Types” section is normal.
+
+In Salesforce:
+
+Record Types are an advanced feature
+Used when companies want different forms/layouts
+You do NOT need them for this practical
+
+So ignore it completely.
+
+Right now you only need:
+
+Custom Object
+Fields
+Apex Code
+Record insertion
+
+That’s enough for your practical.
+
+Now To Actually See Your Data
+
+Do this carefully:
+
+STEP 1
+
+Open:
+
+App Launcher (9 dots)
+
+Search:
+
+Student
+
+If still not visible:
+
+Create Tab Properly
+STEP 2
+
+Go:
+
+Setup → Tabs
+STEP 3
+
+Under:
+
+Custom Object Tabs
+
+Click:
+
+New
+STEP 4
+
+Object:
+
+Student
+
+Tab Style:
+Choose anything.
+
+Then:
+
+Next
+Next
+Save
+STEP 5
+
+Now open:
+
+App Launcher
+
+Search:
+
+Student
+
+Now it should appear.
+
+If It STILL Doesn't Appear
+
+Then do this:
+
+Go:
+
+Setup → Object Manager → Student
+
+Click:
+
+Edit
+
+Check:
+
+Allow Search
+
+and:
+
+Allow Reports
+
+Save.
+
+MOST IMPORTANT THING
+
+Even if tab/navigation has issues,
+your practical is already mostly complete if:
+
+object created,
+fields created,
+Apex class saved,
+code executed.
+
+That itself is enough for journal and viva in many colleges.

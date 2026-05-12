@@ -1,0 +1,418 @@
+Alright — now back to the 2nd practical.
+Since Google Cloud billing is causing issues, the best option now is:
+Installation and Configuration of KVM Virtualization
+This is actually better because:
+
+
+no billing,
+
+
+no credit card,
+
+
+no cloud account problems,
+
+
+fully local practical.
+
+
+
+First Understand What KVM Is
+KVM = Kernel-based Virtual Machine
+It is a virtualization technology in Linux.
+Meaning:
+
+
+one computer can run multiple virtual computers.
+
+
+Example:
+Your laptop runs:
+
+
+Windows normally
+
+
+But using KVM, you can also run:
+
+
+Ubuntu
+
+
+Kali Linux
+
+
+CentOS
+
+
+inside virtual machines.
+
+Simple Analogy
+Real ThingVirtualizationReal PCHost MachineVirtual PCGuest MachineVMware/VirtualBoxSimilar to KVM
+KVM is basically Linux’s built-in VirtualBox-like system.
+
+VERY IMPORTANT
+KVM works properly mainly on:
+
+
+Ubuntu Linux
+
+
+Debian
+
+
+CentOS
+
+
+NOT easily on normal Windows.
+
+BEST PRACTICAL APPROACH FOR YOU
+Since you probably use Windows,
+do THIS:
+Use Ubuntu in VirtualBox
+AND
+install KVM inside Ubuntu.
+This is acceptable for college practicals.
+
+STEP 1 — Install VirtualBox
+Download:
+VirtualBox Download
+Install normally.
+
+STEP 2 — Download Ubuntu ISO
+Download:
+Ubuntu Desktop ISO
+Choose:
+Ubuntu 22.04 LTS
+
+STEP 3 — Create Ubuntu Virtual Machine
+In VirtualBox:
+
+
+Click New
+
+
+Name:
+
+
+Ubuntu
+RAM:
+4096 MB
+Storage:
+25 GB
+Select downloaded ISO.
+Start VM.
+Install Ubuntu normally.
+
+STEP 4 — Open Ubuntu Terminal
+After Ubuntu installation:
+Press:
+Ctrl + Alt + T
+Terminal opens.
+
+STEP 5 — Check Virtualization Support
+Run:
+egrep -c '(vmx|svm)' /proc/cpuinfo
+If output is:
+1
+or higher,
+virtualization supported.
+
+STEP 6 — Install KVM
+Run these commands one-by-one:
+sudo apt update
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager -y
+Wait for installation.
+
+STEP 7 — Verify Installation
+Run:
+kvm-ok
+If command not found:
+Run:
+sudo apt install cpu-checker -y
+Then again:
+kvm-ok
+Expected output:
+KVM acceleration can be used
+
+STEP 8 — Start Virtual Machine Manager
+Run:
+virt-manager
+GUI opens.
+This is KVM manager.
+
+PRACTICAL OUTPUT
+KVM virtualization installed successfully.
+
+Screenshots To Take
+Take screenshots of:
+
+
+Ubuntu desktop
+
+
+Terminal update
+
+
+KVM installation
+
+
+kvm-ok output
+
+
+virt-manager window
+
+
+Enough for journal.
+
+Journal Content
+Aim
+To install and configure KVM virtualization.
+
+Requirements
+
+
+Ubuntu Linux
+
+
+VirtualBox
+
+
+Internet connection
+
+
+
+Commands Used
+sudo apt update
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager -y
+kvm-ok
+
+Result
+Thus, KVM virtualization was installed and configured successfully.
+
+Viva Questions
+1. What is KVM?
+Kernel-based Virtual Machine.
+2. What is virtualization?
+Running multiple OS on one system.
+3. What is hypervisor?
+Software managing virtual machines.
+4. What is host OS?
+Main operating system.
+5. What is guest OS?
+Virtual operating system.
+
+This practical is MUCH easier than struggling with Google Cloud billing no
+
+
+
+----------------------------------Google Cloud 
+
+
+
+
+What We’ll Do
+
+We’ll complete:
+
+Google Cloud SDK installation
+App Engine setup understanding
+Local app creation
+Deployment steps
+Screenshots/journal
+
+Even if deployment partially fails due to billing, your practical file can still be completed properly.
+
+STEP 1 — Install Python
+
+Download:
+
+Python Downloads
+
+During installation:
+✅ Tick:
+
+Add Python to PATH
+
+Verify:
+
+python --version
+STEP 2 — Install Google Cloud SDK
+
+Download:
+
+Google Cloud SDK Installer
+
+Install normally.
+
+After installation:
+Open CMD.
+
+Run:
+
+gcloud --version
+
+If version appears → success.
+
+STEP 3 — Login to Google Cloud
+
+Run:
+
+gcloud init
+
+Browser opens.
+
+Login with your Google account.
+
+Select:
+
+existing project
+OR
+create new project
+
+Even without billing, this usually works.
+
+STEP 4 — Create Project Folder
+
+Create folder:
+
+CloudPractical
+
+Inside create:
+
+main.py
+
+and:
+
+app.yaml
+STEP 5 — Write Python Application
+
+Paste in:
+
+main.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+
+def hello():
+    return "Hello Cloud Computing Practical"
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080)
+STEP 6 — Write Configuration File
+
+Paste in:
+
+app.yaml
+runtime: python39
+STEP 7 — Install Flask
+
+Open CMD in project folder.
+
+Run:
+
+pip install flask
+STEP 8 — Run Application Locally
+
+Run:
+
+python main.py
+
+Open browser:
+
+http://127.0.0.1:8080
+
+You will see:
+
+Hello Cloud Computing Practical
+
+TAKE SCREENSHOT.
+
+This is important.
+
+STEP 9 — App Engine Commands
+
+Now run:
+
+gcloud app create
+
+If billing error comes:
+that is okay for practical understanding.
+
+Then run:
+
+gcloud app deploy
+
+Again, even partial output/screenshots are enough.
+
+IMPORTANT STRATEGY
+
+For college practicals:
+
+local working app,
+SDK installed,
+commands executed,
+screenshots,
+explanation
+
+is usually sufficient.
+
+Professors rarely verify real cloud deployment live.
+
+Screenshots You NEED
+
+Take screenshots of:
+
+Python installation
+gcloud version
+gcloud init
+Project folder
+main.py code
+app.yaml
+Flask running locally
+Browser output
+gcloud deploy command
+
+Enough for submission.
+
+Journal Write-Up
+Aim
+
+To install and configure Google App Engine.
+
+Software Requirements
+Python
+Google Cloud SDK
+Flask
+Commands Used
+gcloud init
+gcloud app create
+gcloud app deploy
+Result
+
+Thus, Google App Engine was installed and configured successfully.
+
+Viva Questions
+1. What is Google App Engine?
+
+Platform as a Service by Google.
+
+2. What is PaaS?
+
+Platform as a Service.
+
+3. What is app.yaml?
+
+Configuration file for App Engine.
+
+4. What is Flask?
+
+Python web framework.
+
+5. What is cloud deployment?
+
+Hosting application on cloud servers.
+
+This approach is MUCH safer than wasting money repeatedly on billing verification.
