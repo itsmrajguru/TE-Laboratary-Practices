@@ -1,0 +1,31 @@
+# ─────────────────────────────────────────────────────────────────
+# app.yaml — Google App Engine Configuration File
+# This file tells GAE how to run your application
+# ─────────────────────────────────────────────────────────────────
+
+# runtime: which language/version to use
+runtime: python311
+
+# instance_class: size of the compute instance
+# F1 = smallest (256MB RAM) — free tier eligible
+instance_class: F1
+
+# automatic_scaling: GAE will auto scale based on traffic
+automatic_scaling:
+  min_instances: 0          # Scale to 0 when no requests (saves cost)
+  max_instances: 2          # Maximum 2 instances at a time
+  target_cpu_utilization: 0.65  # Scale up when CPU hits 65%
+
+# handlers: URL routing rules
+handlers:
+  # Static files (CSS, JS, Images) served directly
+  - url: /static
+    static_dir: static
+
+  # All other URLs go to the Flask app
+  - url: /.*
+    script: auto            # 'auto' means GAE finds the app automatically
+
+# env_variables: environment variables available in your app
+env_variables:
+  FLASK_ENV: "production"

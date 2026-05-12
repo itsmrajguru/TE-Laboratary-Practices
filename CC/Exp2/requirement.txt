@@ -1,0 +1,6 @@
+# requirements.txt
+# List of Python packages needed for this app
+# GAE reads this file and installs these automatically during deployment
+
+Flask==3.0.0        # Web framework — handles routing and HTTP
+gunicorn==21.2.0    # Production WSGI server — GAE uses this to run Flask
